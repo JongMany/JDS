@@ -4,6 +4,7 @@ import path from "path";
 
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
+import { lightTheme } from "../src/theme";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -14,6 +15,27 @@ const distPath = path.resolve(__dirname, "../dist");
 if (!fs.existsSync(distPath)) {
   fs.mkdirSync(distPath, { recursive: true });
 }
+
+const generateCssVars = (
+  prefix: string,
+  values: Record<string, any>
+): string => {
+  let output = "";
+
+  Object.entries(values).forEach(([key, value]) => {
+    const newPrefix = `${prefix}-${key}`; // 현재 키를 추가하여 새로운 프리픽스 생성
+
+    if (typeof value === "object" && value !== null) {
+      // 객체라면 재귀적으로 탐색
+      output += generateCssVars(newPrefix, value);
+    } else {
+      // 기본 값이면 CSS 변수로 추가
+      output += `  --${newPrefix}: ${value};\n`;
+    }
+  });
+
+  return output;
+};
 
 let cssContent = `:root {\n`;
 
@@ -34,6 +56,9 @@ Object.entries(palette).forEach(([category, values]) => {
 });
 
 cssContent += `}\n\n`;
+
+// ✅ 라이트 모드 색상 추가
+cssContent += `[data-theme="light"] {\n${generateCssVars("color", lightTheme)}\n}\n`;
 
 // 클래스 스타일 정의
 Object.entries(typography).forEach(([key, styles]) => {
