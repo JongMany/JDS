@@ -1,4 +1,4 @@
-import { fontSize, letterSpacing, lineHeight } from "../size";
+import { fontSize, letterSpacing, lineHeight } from "../variables";
 
 export const typography = {
   display_1: {

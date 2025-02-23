@@ -1,2 +1,2 @@
 export { typography } from "./theme";
-export { color } from "./colors";
+export { palette, fontSize, letterSpacing, lineHeight } from "./variables";

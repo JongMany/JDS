@@ -1,4 +1,4 @@
-import { typography, color } from "../src/index";
+import { typography, palette } from "../src/index";
 import fs from "fs";
 import path from "path";
 
@@ -24,8 +24,8 @@ Object.entries(typography).forEach(([key, styles]) => {
   cssContent += `  --${key}-letter-spacing: ${styles.letterSpacing};\n`;
 });
 
-// 🔹 color 객체를 순회하며 CSS 변수 생성
-Object.entries(color).forEach(([category, values]) => {
+// 🔹 palette 객체를 순회하며 CSS 변수 생성
+Object.entries(palette).forEach(([category, values]) => {
   Object.entries(values as Record<string, string | number>).forEach(
     ([key, value]) => {
       cssContent += `  --color-${category}-${key}: ${value};\n`;

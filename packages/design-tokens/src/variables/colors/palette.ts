@@ -1,4 +1,4 @@
-export const color = {
+export const palette = {
   common: {
     0: "#000000",
     100: "#FFFFFF",
