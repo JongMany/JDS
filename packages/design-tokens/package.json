@@ -11,11 +11,13 @@
       "import": "./dist/index.esm.js",
       "require": "./dist/index.cjs.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./theme.css": "./dist/theme.css"
   },
   "scripts": {
     "lint": "eslint .",
-    "build": "rm -rf dist && rollup -c"
+    "build:css": "tsx ./scripts/build-css.ts",
+    "build": "rm -rf dist && pnpm build:css && rollup -c"
   },
   "keywords": [],
   "author": "",
@@ -24,14 +26,17 @@
     "@babel/core": "^7.26.9",
     "@babel/preset-env": "^7.26.9",
     "@babel/preset-react": "^7.26.3",
+    "@repo/eslint-config": "workspace:*",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
+    "@types/node": "^22.13.5",
     "rollup": "^4.34.8",
     "rollup-plugin-filesize": "^10.0.0",
-    "typescript": "^5.7.3",
-    "@repo/eslint-config": "workspace:*"
+    "rollup-plugin-postcss": "^4.0.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
   }
 }

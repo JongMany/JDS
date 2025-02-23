@@ -4,6 +4,7 @@ import { babel } from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import terser from "@rollup/plugin-terser";
 import filesize from "rollup-plugin-filesize";
+import postcss from "rollup-plugin-postcss";
 
 export default {
   input: "src/index.ts",
@@ -22,6 +23,11 @@ export default {
     resolve(), //node_modules 지원
     commonjs(), // rollup은 cjs 패키지를 해석할 수 없음
     typescript({ tsconfig: "./tsconfig.json" }), // 타입스크립트 변환
+    postcss({
+      extract: true, // CSS를 별도 파일로 추출 (dist/index.css)
+      minimize: true, // CSS Minify
+      sourceMap: true,
+    }),
     babel({
       exclude: "node_modules/**",
       babelHelpers: "bundled",
