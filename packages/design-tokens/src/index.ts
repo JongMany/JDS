@@ -8,4 +8,5 @@ export {
   radii,
   shadows,
   spacing,
+  fontWeight,
 } from './variables';

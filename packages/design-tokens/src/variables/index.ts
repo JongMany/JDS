@@ -7,4 +7,5 @@ export {
   breakpoints,
   shadows,
   spacing,
+  fontWeight,
 } from './size';
