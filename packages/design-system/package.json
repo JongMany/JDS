@@ -5,23 +5,25 @@
   "type": "module",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.esm.js",
-      "require": "./dist/index.cjs.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.cjs.js"
     },
     "./styles.css": "./dist/index.css"
   },
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "vitest",
     "test:cov": "vitest --coverage",
     "test:ui": "vitest --ui --coverage.enabled=true",
-    "build": "rm -rf dist && rollup -c",
-    "lint": "pnpm dlx eslint . --ext .ts,.tsx",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "clean": "rm -rf dist",
+    "build": "pnpm run clean && rollup -c",
+    "lint": "pnpm dlx eslint . --ext .ts,.tsx",
+    "dev": "pnpm run clean && pnpm build --watch"
   },
   "keywords": [],
   "author": "",
