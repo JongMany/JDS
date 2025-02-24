@@ -1,7 +1,7 @@
 import { hexToRgba } from "../utils";
 import { palette } from "../variables";
 
-export const lightTheme = {
+export const darkTheme = {
   static: {
     white: palette.common[100],
     black: palette.common[0],

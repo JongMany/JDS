@@ -1,10 +1,9 @@
-import { typography, palette } from "../src/index";
+import { typography, palette, lightTheme, darkTheme } from "../src/index";
 import fs from "fs";
 import path from "path";
 
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
-import { lightTheme } from "../src/theme";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -57,9 +56,6 @@ Object.entries(palette).forEach(([category, values]) => {
 
 cssContent += `}\n\n`;
 
-// ✅ 라이트 모드 색상 추가
-cssContent += `[data-theme="light"] {\n${generateCssVars("color", lightTheme)}\n}\n`;
-
 // 클래스 스타일 정의
 Object.entries(typography).forEach(([key, styles]) => {
   cssContent += `.${key} {\n`;
@@ -68,6 +64,12 @@ Object.entries(typography).forEach(([key, styles]) => {
   cssContent += `  letter-spacing: var(--${key}-letter-spacing);\n`;
   cssContent += `}\n\n`;
 });
+
+// ✅ 라이트 모드 색상 추가
+cssContent += `[data-theme="light"] {\n${generateCssVars("color", lightTheme)}}\n`;
+
+// ✅ 다크 모드 색상 추가
+cssContent += `[data-theme="dark"] {\n${generateCssVars("color", darkTheme)}}\n`;
 
 // 결과를 `dist/typography.css` 파일로 저장
 fs.writeFileSync(path.resolve(__dirname, "../dist/index.css"), cssContent);
