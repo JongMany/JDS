@@ -1,30 +1,37 @@
-import React from 'react';
-import { ButtonProps } from './types';
-import { clsx } from 'clsx';
+import React from "react";
+import { ButtonProps } from "./types";
+import { clsx } from "clsx";
 import {
   activeColorVariant,
   buttonStyle,
   enableColorVariant,
   hoverColorVariant,
-} from './style.css';
-import { palette } from '@repo/tokens';
-import { assignInlineVars } from '@vanilla-extract/dynamic';
+  spanStyle,
+} from "./style.css";
+import { palette } from "@repo/tokens";
+import { assignInlineVars } from "@vanilla-extract/dynamic";
+import { useButton } from "./useButton";
+import { spinnerStyle } from "../styles/recipe/spinner.css";
 
-// export default function Button(
-//   props: ButtonProps,
-//   ref: React.Ref<HTMLButtonElement>,
-// ) {
-//   return <button></button>;
-// }
-// const _Button = React.forwardRef(Button);
-// export { _Button as Button };
-export function Button({
-  size,
-  color = 'blue',
-  variant = 'solid',
-  children,
-  ref,
-}: ButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
+export function Button(
+  props: ButtonProps & { ref?: React.Ref<HTMLButtonElement> }
+) {
+  const {
+    size,
+    color = "blue",
+    variant = "solid",
+    children,
+    ref,
+    leftIcon,
+    rightIcon,
+    isLoading,
+    style,
+  } = props;
+  const { buttonProps } = useButton<"button">({
+    ...props,
+    elementType: "button",
+  });
+
   const keys = Object.keys(palette[color]);
   const middlePoint = keys[Math.floor(keys.length * 0.5)] as any;
   const sixPoint = keys[Math.floor(keys.length * 0.6)] as any;
@@ -33,22 +40,11 @@ export function Button({
   const enableColor = (palette[color] as any)[middlePoint];
   const hoverColor = (palette[color] as any)[sixPoint];
   const activeColor = (palette[color] as any)[sevenPoint];
-  console.log(
-    enableColor,
-    hoverColor,
-    activeColor,
-    middlePoint,
-    sixPoint,
-    sevenPoint,
-  );
-
-  // const hoverColor =
-  //   variant === 'solid' ? palette[color][600] : palette[color][50];
-  // const activeColor =
-  //   variant === 'solid' ? palette[color][700] : palette[color][100];
 
   return (
     <button
+      {...buttonProps}
+      role="button"
       className={clsx([buttonStyle({ size, variant })])}
       ref={ref}
       style={{
@@ -57,9 +53,14 @@ export function Button({
           [hoverColorVariant]: hoverColor,
           [activeColorVariant]: activeColor,
         }),
+        ...style,
+        position: "relative",
       }}
     >
+      {isLoading && <div className={spinnerStyle({ size })}></div>}
+      {leftIcon && <span className={spanStyle({ size })}>{leftIcon}</span>}
       <span>{children}</span>
+      {rightIcon && <span className={spanStyle({ size })}>{rightIcon}</span>}
     </button>
   );
 }

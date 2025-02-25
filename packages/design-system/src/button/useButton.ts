@@ -1,7 +1,7 @@
 import { BaseButtonProps, ButtonEventType } from "./types";
 
-export const useButton = (
-  props: BaseButtonProps<"a" | "button" | "div" | "input" | "span">
+export const useButton = <T extends "a" | "button" | "div" | "input" | "span">(
+  props: BaseButtonProps<T>
 ) => {
   const {
     elementType = "button",
