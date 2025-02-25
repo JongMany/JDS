@@ -1,6 +1,10 @@
 import { recipe } from '@vanilla-extract/recipes';
-import { globalStyle, style } from '@vanilla-extract/css';
+import { createVar, globalStyle, style } from '@vanilla-extract/css';
 import { fontSize, fontWeight, radii, shadows, typography } from '@repo/tokens';
+
+export const enableColorVariant = createVar(); // 500
+export const hoverColorVariant = createVar(); // 600 outline 50 ghost 50
+export const activeColorVariant = createVar(); // 700 outline 100 ghost 100
 
 const baseButtonStyle = style({
   margin: 0,
@@ -76,7 +80,40 @@ export const buttonStyle = recipe({
         height: '3rem',
       },
     },
-    variant: {},
+    variant: {
+      solid: {
+        backgroundColor: enableColorVariant,
+        // color: vars.colors.$scale.gray[50],
+
+        '&:hover:not([disabled])': {
+          backgroundColor: hoverColorVariant,
+        },
+        '&:active:not([disabled])': {
+          backgroundColor: activeColorVariant,
+        },
+      },
+      outline: {
+        border: `1px solid ${enableColorVariant}`,
+        color: enableColorVariant,
+
+        '&:hover:not([disabled])': {
+          backgroundColor: hoverColorVariant,
+        },
+        '&:active:not([disabled])': {
+          backgroundColor: activeColorVariant,
+        },
+      },
+      ghost: {
+        color: enableColorVariant,
+
+        '&:hover:not([disabled])': {
+          backgroundColor: hoverColorVariant,
+        },
+        '&:active:not([disabled])': {
+          backgroundColor: activeColorVariant,
+        },
+      },
+    },
   },
   // default variant 정의
   defaultVariants: {},

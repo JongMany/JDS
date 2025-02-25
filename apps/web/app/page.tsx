@@ -21,7 +21,9 @@ const ThemeImage = (props: Props) => {
 export default function Home() {
   return (
     <div className={styles.page}>
-      <Button size="md">클릭!</Button>
+      <Button size="md" variant="solid">
+        클릭!
+      </Button>
     </div>
   );
 }

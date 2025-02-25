@@ -1,7 +1,7 @@
-import { Size } from '../types';
+import { ColorProps, Size } from '../types';
 
 export type ButtonProps = {
-  // color?: keyof typeof vars.colors.$scale,
+  color?: ColorProps['color'];
   isDisabled?: boolean;
   isLoading?: boolean;
   size?: Size;

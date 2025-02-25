@@ -52,6 +52,7 @@ export default {
       tsconfig: './tsconfig.json',
       declaration: true,
       declarationDir: 'dist',
+      declarationMap: false,
       rootDir: 'src',
       exclude: [
         'node_modules',
