@@ -2,6 +2,7 @@ import React from 'react';
 import { ButtonProps } from './types';
 import { clsx } from 'clsx';
 import {
+  activeColorVariant,
   buttonStyle,
   enableColorVariant,
   hoverColorVariant,
@@ -25,9 +26,21 @@ export function Button({
   ref,
 }: ButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
   const keys = Object.keys(palette[color]);
+  const middlePoint = keys[Math.floor(keys.length * 0.5)] as any;
+  const sixPoint = keys[Math.floor(keys.length * 0.6)] as any;
+  const sevenPoint = keys[Math.floor(keys.length * 0.7)] as any;
 
-  const enableColor = palette.blue[50];
-  const hoverColor = palette.blue[70];
+  const enableColor = (palette[color] as any)[middlePoint];
+  const hoverColor = (palette[color] as any)[sixPoint];
+  const activeColor = (palette[color] as any)[sevenPoint];
+  console.log(
+    enableColor,
+    hoverColor,
+    activeColor,
+    middlePoint,
+    sixPoint,
+    sevenPoint,
+  );
 
   // const hoverColor =
   //   variant === 'solid' ? palette[color][600] : palette[color][50];
@@ -42,7 +55,7 @@ export function Button({
         ...assignInlineVars({
           [enableColorVariant]: enableColor,
           [hoverColorVariant]: hoverColor,
-          // [activeColorVariant]: activeColor,
+          [activeColorVariant]: activeColor,
         }),
       }}
     >
