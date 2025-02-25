@@ -1,11 +1,12 @@
-import { defineProperties } from "@vanilla-extract/sprinkles";
+import { radii } from '@repo/tokens';
+import { defineProperties } from '@vanilla-extract/sprinkles';
 
 export const BorderStyleProperties = defineProperties({
   conditions: {
     default: {},
   },
-  defaultCondition: "default",
+  defaultCondition: 'default',
   properties: {
-    // borderRadius: box.radii,
+    borderRadius: radii,
   },
 });

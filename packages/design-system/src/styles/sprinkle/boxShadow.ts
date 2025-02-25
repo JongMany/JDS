@@ -1,11 +1,12 @@
-import { defineProperties } from "@vanilla-extract/sprinkles";
+import { shadows } from '@repo/tokens';
+import { defineProperties } from '@vanilla-extract/sprinkles';
 
 export const BoxShadowStyleProps = defineProperties({
   conditions: {
     default: {},
   },
-  defaultCondition: "default",
+  defaultCondition: 'default',
   properties: {
-    // boxShadow: vars.box.shadows,
+    boxShadow: shadows,
   },
 });
