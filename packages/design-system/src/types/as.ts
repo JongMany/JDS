@@ -1,6 +1,6 @@
-import { palette } from '@repo/tokens';
-import { JSX } from 'react';
-import { StyleSprinkles } from '../styles/sprinkle';
+import { palette } from "@repo/tokens";
+import { JSX } from "react";
+import { StyleSprinkles } from "../styles/sprinkle";
 
 type AsProps = {
   // svg를 제외한 HTML 태그
@@ -8,7 +8,7 @@ type AsProps = {
 };
 
 // as props는 제거한 HTML 속성
-type ElementProps = Omit<React.HTMLAttributes<HTMLElement>, 'as'>;
+type ElementProps = Omit<React.HTMLAttributes<HTMLElement>, "as">;
 
 export type AsElementProps = AsProps & ElementProps;
 
@@ -17,4 +17,4 @@ export type ColorProps = {
   background?: keyof typeof palette;
 };
 
-export type StyleProps = Parameters<typeof StyleSprinkles>[0];
+export type StyleProps = Parameters<typeof StyleSprinkles>[0] & ColorProps;
