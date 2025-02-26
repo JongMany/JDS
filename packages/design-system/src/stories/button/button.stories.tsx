@@ -1,3 +1,4 @@
+import { palette } from "@repo/tokens";
 import { Button } from "../../components/button/Button";
 
 export default {
@@ -7,6 +8,17 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
+  argTypes: {
+    color: {
+      options: Object.keys(palette),
+      control: "select",
+    },
+    ref: {
+      table: {
+        disable: true, // ✅ Controls 패널에서 숨김
+      },
+    },
+  },
 };
 
 export const ButtonStory = {
@@ -16,7 +28,7 @@ export const ButtonStory = {
     variant: "outline",
     isDisabled: false,
     isLoading: true,
-    leftIcon: "😀",
+    leftIcon: "",
   },
 };
 
