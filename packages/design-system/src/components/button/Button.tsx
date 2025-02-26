@@ -11,7 +11,7 @@ import {
 import { palette } from "@repo/tokens";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { useButton } from "./useButton";
-import { spinnerStyle } from "../styles/recipe";
+import { spinnerStyle } from "../../styles/recipe";
 
 export function Button(
   props: ButtonProps & { ref?: React.Ref<HTMLButtonElement> }

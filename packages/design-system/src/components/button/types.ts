@@ -1,5 +1,5 @@
 import { ComponentProps, HTMLAttributes, KeyboardEvent } from "react";
-import { ColorProps, Size } from "../types";
+import { ColorProps, Size } from "../../types";
 
 export type ButtonProps = {
   color?: ColorProps["color"];
