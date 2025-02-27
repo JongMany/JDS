@@ -1,7 +1,7 @@
 import { shadows } from '@repo/tokens';
 import { defineProperties } from '@vanilla-extract/sprinkles';
 
-export const BoxShadowStyleProps = defineProperties({
+export const BoxShadowStyleProperties = defineProperties({
   conditions: {
     default: {},
   },
