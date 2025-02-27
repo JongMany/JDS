@@ -1,7 +1,7 @@
 import { createSprinkles } from "@vanilla-extract/sprinkles";
-import { MarginAndPaddingProperties } from "./marginPadding";
-import { BorderStyleProperties } from "./border";
-import { BoxShadowStyleProps } from "./boxShadow";
+import { MarginAndPaddingProperties } from "./marginPadding.css";
+import { BorderStyleProperties } from "./border.css";
+import { BoxShadowStyleProps } from "./boxShadow.css";
 
 export const StyleSprinkles = createSprinkles(
   MarginAndPaddingProperties,

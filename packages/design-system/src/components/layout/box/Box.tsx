@@ -7,7 +7,7 @@ import { StyleSprinkles } from "../../../styles/sprinkle";
 import { extractSprinkleProps } from "../../../utils";
 
 const Box: React.FC<BoxProps & RefType<HTMLElement>> = (props) => {
-  const { as = "div", color, children, className, ...rest } = props;
+  const { as = "div", children, className, ...rest } = props;
 
   return React.createElement(
     as,
@@ -23,11 +23,6 @@ const Box: React.FC<BoxProps & RefType<HTMLElement>> = (props) => {
       style: {
         ...props.style,
       },
-      // style: {
-      //   // background: background && vars.colors.$scale?.[background]?.[100],
-      //   // color: color && vars.colors.$scale?.[color]?.[700],
-      //   ...props.style,
-      // },
     },
     children
   );

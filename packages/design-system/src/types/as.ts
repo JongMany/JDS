@@ -17,4 +17,5 @@ export type ColorProps = {
   background?: keyof typeof palette;
 };
 
-export type StyleProps = Parameters<typeof StyleSprinkles>[0] & ColorProps;
+// export type StyleProps = Parameters<typeof StyleSprinkles>[0] & ColorProps;
+export type StyleProps = Parameters<typeof StyleSprinkles>[0];
