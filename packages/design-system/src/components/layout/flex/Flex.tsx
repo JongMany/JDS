@@ -1,13 +1,14 @@
 import React from "react";
 import { RefType } from "../../../types";
-import { FlexProps } from "./types";
 import { clsx } from "clsx";
-import { BaseStyle } from "../../../styles/css/base.css";
+import { BaseStyle } from "../../../styles/css";
 import { StyleSprinkles } from "../../../styles/sprinkle";
 import { extractSprinkleProps } from "../../../utils";
+import { FlexProps } from "./types";
 
-const Flex = (props: FlexProps & RefType<HTMLElement>) => {
+const Flex: React.FC<FlexProps & RefType<HTMLElement>> = (props) => {
   const { as = "div", children } = props;
+  // Flex properties
   const { align, basis, direction, grow, justify, shrink, wrap, gap } = props;
 
   return React.createElement(
@@ -37,3 +38,5 @@ const Flex = (props: FlexProps & RefType<HTMLElement>) => {
     children
   );
 };
+
+export { Flex };
