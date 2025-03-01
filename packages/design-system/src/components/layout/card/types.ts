@@ -11,3 +11,7 @@ export type CardProps = AsElementProps &
 export type CardHeaderProps = StyleProps & {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 } & HTMLAttributes<HTMLElement>;
+
+export type CardFooterProps = StyleProps & {
+  as?: "div" | "footer";
+} & HTMLAttributes<HTMLElement>;
