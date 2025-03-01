@@ -1,5 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react/*";
-import { Card } from "../../../components/layout";
+import {
+  Card,
+  CardFooter,
+  CardHeader,
+  CardBody,
+} from "../../../components/layout";
 import type { CardProps } from "../../../components/layout";
 
 const meta: Meta<typeof Card> = {
@@ -38,8 +43,9 @@ type Story = StoryObj<typeof Card>;
 export const Default = (props: Partial<CardProps>) => {
   return (
     <Card {...props} style={{ padding: "20px", border: "1px solid #ddd" }}>
-      <h3>Card Title</h3>
-      <p>This is a sample Card component.</p>
+      <CardHeader>Card Title</CardHeader>
+      <CardBody>123</CardBody>
+      <CardFooter>Card Footer</CardFooter>
     </Card>
   );
 };
