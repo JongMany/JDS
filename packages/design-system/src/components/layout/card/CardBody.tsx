@@ -1,14 +1,15 @@
 import { PropsWithChildren } from "react";
-import { CardHeaderProps } from "./types";
+import { CardBodyProps } from "./types";
 import { clsx } from "clsx";
 import { BaseStyle } from "../../../styles/css";
 import { StyleSprinkles } from "../../../styles/sprinkle";
 import { extractSprinkleProps } from "../../../utils";
 
-const CardHeader: React.FC<PropsWithChildren<CardHeaderProps>> = (props) => {
-  const { as: Component = "h3", children, ...rest } = props;
+const CardBody: React.FC<PropsWithChildren<CardBodyProps>> = (props) => {
+  const { as: Component = "div", children, className, ...rest } = props;
   return (
     <Component
+      id="card-content"
       {...rest}
       className={clsx([
         BaseStyle,
@@ -17,6 +18,10 @@ const CardHeader: React.FC<PropsWithChildren<CardHeaderProps>> = (props) => {
         ),
         props.className,
       ])}
+      style={{
+        ...rest.style,
+        flex: 1,
+      }}
       role="banner"
       aria-labelledby="card-title"
     >
@@ -24,5 +29,4 @@ const CardHeader: React.FC<PropsWithChildren<CardHeaderProps>> = (props) => {
     </Component>
   );
 };
-
-export { CardHeader };
+export { CardBody };

@@ -19,6 +19,7 @@ const Card: React.FC<CardProps & RefType<HTMLElement>> = (props) => {
     maxW,
     maxH,
     ref,
+    align = "vertical",
     ...rest
   } = props;
 
@@ -31,17 +32,33 @@ const Card: React.FC<CardProps & RefType<HTMLElement>> = (props) => {
   };
 
   const ALLOWED_CHILDREN = [CardHeader, CardBody, CardFooter];
+  const validChildren = React.Children.toArray(children).filter(
+    React.isValidElement
+  );
+
   // Card.Header, Card.Body, Card.Footer만 허용하도록 PropTypes 검사
-  React.Children.forEach(children, (child) => {
-    if (React.isValidElement(child)) {
-      const isAllowed = ALLOWED_CHILDREN.includes(child.type as any);
-      if (!isAllowed) {
-        throw new Error(
-          "🚨 Card 컴포넌트의 직속 자식은 `CardHeader, CardBody, CardFooter`만 허용됩니다."
-        );
-      }
+  const foundComponents = validChildren.map((child) => {
+    if (!ALLOWED_CHILDREN.includes(child.type as any)) {
+      throw new Error(
+        "🚨 Card 컴포넌트의 직속 자식은 `CardHeader, CardBody, CardFooter`만 허용됩니다."
+      );
     }
+    return child.type;
   });
+
+  // // ✅ 허용된 순서: [CardHeader → CardBody → CardFooter] (하나 이상 없어도 가능)
+  // const correctOrder = foundComponents
+  //   .slice()
+  //   .sort(
+  //     (a, b) =>
+  //       ALLOWED_CHILDREN.indexOf(a as any) - ALLOWED_CHILDREN.indexOf(b as any)
+  //   );
+
+  // if (JSON.stringify(foundComponents) !== JSON.stringify(correctOrder)) {
+  //   throw new Error(
+  //     "🚨 Card 내부 컴포넌트 순서는 `CardHeader → CardBody → CardFooter` 순이어야 합니다."
+  //   );
+  // }
 
   return React.createElement(
     as,
@@ -54,8 +71,15 @@ const Card: React.FC<CardProps & RefType<HTMLElement>> = (props) => {
         props.className,
       ]),
       ...rest,
-      style: dynamicStyle,
+      style: {
+        ...dynamicStyle,
+        display: "flex",
+        flexDirection: align === "vertical" ? "column" : "row",
+      },
       ref,
+      role: "group",
+      "aria-labelledby": "card-title",
+      "aria-describedby": "card-content",
     },
     children
   );
