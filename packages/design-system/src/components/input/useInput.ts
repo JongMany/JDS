@@ -13,8 +13,8 @@ export const useInput = (props: UseInputProps): UseInputResult => {
     ...rest
   } = props;
 
-  const isCountrolled = value !== undefined && onChange !== undefined;
-  if (isCountrolled && typeof onChange !== "function") {
+  const isControlled = value !== undefined && onChange !== undefined;
+  if (isControlled && typeof onChange !== "function") {
     throw new Error(
       "onChange must be a function when Input is controlled components"
     );
@@ -24,14 +24,14 @@ export const useInput = (props: UseInputProps): UseInputResult => {
   );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (isCountrolled) {
+    if (isControlled) {
       onChange(event);
     } else {
       setUncontrolledValue(event.target.value);
     }
   };
 
-  const currentValue = isCountrolled ? value : uncontrolledValue;
+  const currentValue = isControlled ? value : uncontrolledValue;
 
   return {
     inputProps: {
