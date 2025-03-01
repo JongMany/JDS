@@ -3,8 +3,14 @@ import { clsx } from "clsx";
 import type { InputProps } from "./types";
 import { useInput } from "./useInput";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
+import {
+  errorBorderColorVariant,
+  focusBorderColorVariant,
+  inputStyle,
+} from "./style.css";
+import { RefType } from "../../types";
 
-const Input = (props: InputProps & { ref: React.Ref<HTMLInputElement> }) => {
+const Input = (props: InputProps & RefType<HTMLInputElement>) => {
   const {
     color = "gray",
     size = "lg",
@@ -23,9 +29,17 @@ const Input = (props: InputProps & { ref: React.Ref<HTMLInputElement> }) => {
     <input
       {...inputProps}
       ref={ref}
-      // className={clsx([inputStyle({}), className])}
+      className={clsx([
+        inputStyle({
+          size,
+        }),
+        className,
+      ])}
       style={{
-        ...assignInlineVars({}),
+        ...assignInlineVars({
+          [errorBorderColorVariant]: errorBorderColor,
+          [focusBorderColorVariant]: focusBorderColor,
+        }),
       }}
     />
   );

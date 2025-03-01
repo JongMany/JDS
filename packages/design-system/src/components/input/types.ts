@@ -4,9 +4,9 @@ type Size = "lg" | "md" | "sm" | "xs";
 
 export type InputProps = {
   // color
-  size?: Size;
   errorBorderColor?: string;
   focusBorderColor?: string;
+  size?: Size;
 } & UseInputProps;
 
 export type UseInputProps = {
@@ -17,7 +17,7 @@ export type UseInputProps = {
   formAction?: string | undefined;
 } & Omit<
   ComponentPropsWithoutRef<"input">,
-  "disabled" | "readOnly" | "formAction" | "children"
+  "disabled" | "readOnly" | "formAction" | "children" | "size"
 >;
 
 export type UseInputResult = {
