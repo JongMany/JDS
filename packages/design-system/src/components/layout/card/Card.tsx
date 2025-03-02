@@ -1,25 +1,27 @@
-import React from "react";
-import { RefType } from "../../../types";
-import type { CardProps } from "./types";
-import { clsx } from "clsx";
-import { BaseStyle } from "../../../styles/css";
-import { StyleSprinkles } from "../../../styles/sprinkle";
-import { extractSprinkleProps } from "../../../utils";
-import { CardHeader } from "./CardHeader";
-import { CardBody } from "./CardBody";
-import { CardFooter } from "./CardFooter";
+import type { CardProps } from '@/components/layout/card/types';
+import type { RefType } from '@/types';
+
+import { clsx } from 'clsx';
+import React from 'react';
+
+import { CardBody } from './CardBody';
+import { CardFooter } from './CardFooter';
+import { CardHeader } from './CardHeader';
+
+import { BaseStyle } from '@/styles/css';
+import { StyleSprinkles } from '@/styles/sprinkle';
+import { extractSprinkleProps } from '@/utils';
 
 const Card: React.FC<CardProps & RefType<HTMLElement>> = (props) => {
   const {
-    as = "article",
+    as = 'article',
     children,
-    className,
     minW,
     minH,
     maxW,
     maxH,
     ref,
-    align = "vertical",
+    align = 'vertical',
     ...rest
   } = props;
 
@@ -33,14 +35,14 @@ const Card: React.FC<CardProps & RefType<HTMLElement>> = (props) => {
 
   const ALLOWED_CHILDREN = [CardHeader, CardBody, CardFooter];
   const validChildren = React.Children.toArray(children).filter(
-    React.isValidElement
+    React.isValidElement,
   );
 
   // Card.Header, Card.Body, Card.Footer만 허용하도록 PropTypes 검사
   const foundComponents = validChildren.map((child) => {
     if (!ALLOWED_CHILDREN.includes(child.type as any)) {
       throw new Error(
-        "🚨 Card 컴포넌트의 직속 자식은 `CardHeader, CardBody, CardFooter`만 허용됩니다."
+        '🚨 Card 컴포넌트의 직속 자식은 `CardHeader, CardBody, CardFooter`만 허용됩니다.',
       );
     }
     return child.type;
@@ -66,22 +68,22 @@ const Card: React.FC<CardProps & RefType<HTMLElement>> = (props) => {
       className: clsx([
         BaseStyle,
         StyleSprinkles(
-          extractSprinkleProps(props, Array.from(StyleSprinkles.properties))
+          extractSprinkleProps(props, Array.from(StyleSprinkles.properties)),
         ),
         props.className,
       ]),
       ...rest,
       style: {
         ...dynamicStyle,
-        display: "flex",
-        flexDirection: align === "vertical" ? "column" : "row",
+        display: 'flex',
+        flexDirection: align === 'vertical' ? 'column' : 'row',
       },
       ref,
-      role: "group",
-      "aria-labelledby": "card-title",
-      "aria-describedby": "card-content",
+      role: 'group',
+      'aria-labelledby': 'card-title',
+      'aria-describedby': 'card-content',
     },
-    children
+    children,
   );
 };
 

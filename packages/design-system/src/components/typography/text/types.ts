@@ -1,5 +1,5 @@
-import { HTMLAttributes, PropsWithChildren } from 'react';
-import { StyleProps } from '../../../types';
+import type { StyleProps } from '@/types';
+import type { HTMLAttributes, PropsWithChildren } from 'react';
 
 export type HTMLTextElement =
   | HTMLParagraphElement

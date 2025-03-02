@@ -1,5 +1,6 @@
-import { useState } from "react";
-import type { UseInputProps, UseInputResult } from "./types";
+import type { UseInputProps, UseInputResult } from './types';
+
+import { useState } from 'react';
 
 export const useInput = (props: UseInputProps): UseInputResult => {
   const {
@@ -14,13 +15,13 @@ export const useInput = (props: UseInputProps): UseInputResult => {
   } = props;
 
   const isControlled = value !== undefined && onChange !== undefined;
-  if (isControlled && typeof onChange !== "function") {
+  if (isControlled && typeof onChange !== 'function') {
     throw new Error(
-      "onChange must be a function when Input is controlled components"
+      'onChange must be a function when Input is controlled components',
     );
   }
   const [uncontrolledValue, setUncontrolledValue] = useState(
-    defaultValue ?? ""
+    defaultValue ?? '',
   );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,10 +42,10 @@ export const useInput = (props: UseInputProps): UseInputResult => {
       onChange: handleChange,
       disabled: isDisabled,
       readOnly: isReadOnly,
-      "data-disabled": isDisabled,
-      "data-invalid": isInvalid,
-      "aria-invalid": isInvalid,
-      "aria-required": isRequired,
+      'data-disabled': isDisabled,
+      'data-invalid': isInvalid,
+      'aria-invalid': isInvalid,
+      'aria-required': isRequired,
     },
     valueCount: currentValue.toString().length,
   };

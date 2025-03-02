@@ -1,10 +1,13 @@
+import type { HeadingProps } from './types';
+import type { RefType } from '@/types';
+
 import clsx from 'clsx';
-import { RefType } from '../../../types';
-import { HeadingProps } from './types';
-import { BaseStyle } from '../../../styles/css/base.css';
-import { StyleSprinkles } from '../../../styles/sprinkle/index';
-import { extractSprinkleProps } from '../../../utils';
+
 import { headingStyle } from './style.css';
+
+import { BaseStyle } from '@/styles/css';
+import { StyleSprinkles } from '@/styles/sprinkle';
+import { extractSprinkleProps } from '@/utils';
 
 const Heading = (props: HeadingProps & RefType<HTMLHeadingElement>) => {
   const {

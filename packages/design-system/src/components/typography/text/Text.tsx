@@ -1,10 +1,12 @@
-import type { RefType } from '@/types';
 import type { RefTextElement, TextProps } from './types';
+import type { RefType } from '@/types';
+
 import { clsx } from 'clsx';
-import { extractSprinkleProps } from '@/utils';
+
+import { textStyle } from '@/components/typography/text/style.css';
 import { BaseStyle } from '@/styles/css';
 import { StyleSprinkles } from '@/styles/sprinkle';
-import { textStyle } from '@/components/typography/text/style.css';
+import { extractSprinkleProps } from '@/utils';
 
 const Text = (props: TextProps & RefType<RefTextElement>) => {
   const {

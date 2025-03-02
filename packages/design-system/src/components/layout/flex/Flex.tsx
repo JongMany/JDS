@@ -1,13 +1,15 @@
-import React from "react";
-import { RefType } from "../../../types";
-import { clsx } from "clsx";
-import { BaseStyle } from "../../../styles/css";
-import { StyleSprinkles } from "../../../styles/sprinkle";
-import { extractSprinkleProps } from "../../../utils";
-import { FlexProps } from "./types";
+import type { FlexProps } from './types';
+import type { RefType } from '@/types';
+
+import { clsx } from 'clsx';
+import React from 'react';
+
+import { BaseStyle } from '@/styles/css';
+import { StyleSprinkles } from '@/styles/sprinkle';
+import { extractSprinkleProps } from '@/utils';
 
 const Flex: React.FC<FlexProps & RefType<HTMLElement>> = (props) => {
-  const { as = "div", children } = props;
+  const { as = 'div', children } = props;
   // Flex properties
   const { align, basis, direction, grow, justify, shrink, wrap, gap } = props;
 
@@ -18,12 +20,12 @@ const Flex: React.FC<FlexProps & RefType<HTMLElement>> = (props) => {
       className: clsx([
         BaseStyle,
         StyleSprinkles(
-          extractSprinkleProps(props, Array.from(StyleSprinkles.properties))
+          extractSprinkleProps(props, Array.from(StyleSprinkles.properties)),
         ),
         props.className,
       ]),
       style: {
-        display: "flex",
+        display: 'flex',
         flexDirection: direction,
         justifyContent: justify,
         alignItems: align,
@@ -35,7 +37,7 @@ const Flex: React.FC<FlexProps & RefType<HTMLElement>> = (props) => {
         ...props.style,
       },
     },
-    children
+    children,
   );
 };
 

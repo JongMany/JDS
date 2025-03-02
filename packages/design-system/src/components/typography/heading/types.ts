@@ -1,6 +1,5 @@
-import { HTMLAttributes, PropsWithChildren } from 'react';
-import { fontWeight } from '@repo/tokens';
-import { StyleProps } from '../../../types';
+import type { StyleProps } from '@/types';
+import type { HTMLAttributes, PropsWithChildren } from 'react';
 
 export type HeadingProps = PropsWithChildren &
   StyleProps & {

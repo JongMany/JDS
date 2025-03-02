@@ -4,8 +4,16 @@
       "mode": "auto"
     }
   ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.formatOnSave": true, // 저장 시 자동 포맷팅
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
     "source.fixAll.eslint": "always"
-  },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  }
 }

@@ -1,6 +1,6 @@
-export const extractSprinkleProps = <T extends Object>(
+export const extractSprinkleProps = <T extends object>(
   props: T,
-  keys: (keyof T)[]
+  keys: (keyof T)[],
 ) => {
   const result: any = {};
 
