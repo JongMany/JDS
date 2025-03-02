@@ -1,17 +1,17 @@
-import { palette } from "@repo/tokens";
-import { Button } from "../../components/button/Button";
+import { palette } from '@repo/tokens';
+import { Button } from '../../components/button/Button';
 
 export default {
-  title: "Button",
+  title: 'Components/Button',
   component: Button,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     color: {
       options: Object.keys(palette),
-      control: "select",
+      control: 'select',
     },
     ref: {
       table: {
@@ -23,12 +23,12 @@ export default {
 
 export const ButtonStory = {
   args: {
-    size: "lg",
-    children: "Button",
-    variant: "outline",
+    size: 'lg',
+    children: 'Button',
+    variant: 'outline',
     isDisabled: false,
     isLoading: true,
-    leftIcon: "",
+    leftIcon: '',
   },
 };
 
