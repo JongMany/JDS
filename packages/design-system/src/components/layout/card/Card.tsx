@@ -1,5 +1,6 @@
 import type { CardProps } from '@/components/layout/card/types';
 import type { RefType } from '@/types';
+import type { ElementType } from 'react';
 
 import { clsx } from 'clsx';
 import React from 'react';
@@ -12,7 +13,9 @@ import { BaseStyle } from '@/styles/css';
 import { StyleSprinkles } from '@/styles/sprinkle';
 import { extractSprinkleProps } from '@/utils';
 
-const Card: React.FC<CardProps & RefType<HTMLElement>> = (props) => {
+const Card = <T extends ElementType = 'article'>(
+  props: CardProps<T> & RefType<HTMLElement>,
+) => {
   const {
     as = 'article',
     children,
@@ -86,5 +89,9 @@ const Card: React.FC<CardProps & RefType<HTMLElement>> = (props) => {
     children,
   );
 };
+
+Card.Header = CardHeader;
+Card.Body = CardBody;
+Card.Footer = CardFooter;
 
 export { Card };
