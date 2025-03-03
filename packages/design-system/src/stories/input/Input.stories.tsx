@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Input } from "../../components/input/Input";
 import type { InputProps } from "../../components/input/types";
 import { useState } from "react";
-import { InputGroup } from "@/components/input";
+import { InputGroup, InputLeftAddon } from "@/components/input";
 
 const meta: Meta<typeof Input> = {
   title: "Components/Input",
@@ -37,6 +37,7 @@ export const Default = (props: Partial<InputProps>) => {
 
   return (
     <InputGroup size="lg">
+      <InputLeftAddon size="lg">$</InputLeftAddon>
       <Input
         {...props}
         value={value}
