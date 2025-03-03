@@ -1,23 +1,23 @@
-import type { InputProps } from './types';
-import type { RefType } from '@/types';
+import type { InputProps } from "./types";
+import type { RefType } from "@/types";
 
-import { assignInlineVars } from '@vanilla-extract/dynamic';
-import { clsx } from 'clsx';
+import { assignInlineVars } from "@vanilla-extract/dynamic";
+import { clsx } from "clsx";
 
 import {
   errorBorderColorVariant,
   focusBorderColorVariant,
   inputStyle,
-} from './style.css';
-import { useInput } from './useInput';
+} from "./style.css";
+import { useInput } from "./useInput";
 
 const Input = (props: InputProps & RefType<HTMLInputElement>) => {
   const {
-    color = 'gray',
-    size = 'lg',
+    color = "gray",
+    size = "lg",
     // variant = "outline",
-    errorBorderColor = '#E53E3E',
-    focusBorderColor = '#3182CE',
+    errorBorderColor = "#E53E3E",
+    focusBorderColor = "#3182CE",
     className,
     style,
     ref,
@@ -41,6 +41,8 @@ const Input = (props: InputProps & RefType<HTMLInputElement>) => {
           [errorBorderColorVariant]: errorBorderColor,
           [focusBorderColorVariant]: focusBorderColor,
         }),
+        color,
+        ...style,
       }}
     />
   );

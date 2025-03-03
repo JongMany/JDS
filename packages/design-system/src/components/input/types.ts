@@ -1,9 +1,12 @@
-import type { ComponentPropsWithoutRef } from 'react';
+import type {
+  ComponentPropsWithoutRef,
+  HTMLAttributes,
+  PropsWithChildren,
+} from "react";
 
-type Size = 'lg' | 'md' | 'sm' | 'xs';
+type Size = "lg" | "md" | "sm" | "xs";
 
 export type InputProps = {
-  // color
   errorBorderColor?: string;
   focusBorderColor?: string;
   size?: Size;
@@ -16,17 +19,22 @@ export type UseInputProps = {
   isInvalid?: boolean;
   formAction?: string | undefined;
 } & Omit<
-  ComponentPropsWithoutRef<'input'>,
-  'disabled' | 'readOnly' | 'formAction' | 'children' | 'size'
+  ComponentPropsWithoutRef<"input">,
+  "disabled" | "readOnly" | "formAction" | "children" | "size"
 >;
 
 export type UseInputResult = {
-  inputProps: Omit<ComponentPropsWithoutRef<'input'>, 'children'> & {
-    'data-disabled': boolean;
-    'data-invalid': boolean;
-    'aria-invalid': boolean;
-    'aria-required': boolean;
+  inputProps: Omit<ComponentPropsWithoutRef<"input">, "children"> & {
+    "data-disabled": boolean;
+    "data-invalid": boolean;
+    "aria-invalid": boolean;
+    "aria-required": boolean;
     formAction?: string | undefined;
   };
   valueCount: number;
 };
+
+export type InputGroupProps = PropsWithChildren<{
+  size?: Size;
+}> &
+  Omit<HTMLAttributes<HTMLDivElement>, "children">;
