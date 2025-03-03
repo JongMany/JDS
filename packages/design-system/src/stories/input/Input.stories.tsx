@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Input } from "../../components/input/Input";
 import type { InputProps } from "../../components/input/types";
 import { useState } from "react";
+import { InputGroup } from "@/components/input";
 
 const meta: Meta<typeof Input> = {
   title: "Components/Input",
@@ -35,12 +36,14 @@ export const Default = (props: Partial<InputProps>) => {
   const [value, setValue] = useState("");
 
   return (
-    <Input
-      {...props}
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-      placeholder="Enter text..."
-    />
+    <InputGroup size="lg">
+      <Input
+        {...props}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder="Enter text..."
+      />
+    </InputGroup>
   );
 };
 
@@ -68,11 +71,9 @@ Large.args = {
 // Error
 export const ErrorState = (props: Partial<InputProps>) => {
   return (
-    <Input
-      {...props}
-      isInvalid={true}
-      style={{ border: "1px solid #FF0000" }}
-    />
+    <InputGroup size="lg">
+      <Input {...props} isInvalid={true} />
+    </InputGroup>
   );
 };
 
@@ -83,7 +84,11 @@ ErrorState.args = {
 
 // ✅ 포커스 상태 Input
 export const FocusState = (props: Partial<InputProps>) => {
-  return <Input {...props} style={{ border: "1px solid #00FF00" }} />;
+  return (
+    <InputGroup size="lg">
+      <Input {...props} />
+    </InputGroup>
+  );
 };
 
 FocusState.args = {
