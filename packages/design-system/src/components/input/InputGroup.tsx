@@ -53,11 +53,9 @@ const InputGroup = (props: InputGroupProps & RefType<HTMLDivElement>) => {
     return null;
   });
   return (
-    <div
-      {...rest}
-      ref={ref}
-      className={clsx([inputGroupStyle, className])}
-    ></div>
+    <div {...rest} ref={ref} className={clsx([inputGroupStyle, className])}>
+      {inputGroupChildren}
+    </div>
   );
 };
 
