@@ -47,5 +47,6 @@ const Input = (props: InputProps & RefType<HTMLInputElement>) => {
     />
   );
 };
+Input.displayName = "Input";
 
 export { Input };

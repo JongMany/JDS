@@ -38,3 +38,9 @@ export type InputGroupProps = PropsWithChildren<{
   size?: Size;
 }> &
   Omit<HTMLAttributes<HTMLDivElement>, "children">;
+
+export type InputLeftAddonProps = {
+  // color?: Color;
+  size?: Size;
+  children: React.ReactNode;
+};
