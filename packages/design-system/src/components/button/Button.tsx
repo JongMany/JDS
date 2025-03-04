@@ -1,9 +1,9 @@
-import type { ButtonProps } from './types';
+import type { ButtonProps } from "./types";
 
-import { palette } from '@repo/tokens';
-import { assignInlineVars } from '@vanilla-extract/dynamic';
-import { clsx } from 'clsx';
-import React from 'react';
+import { palette } from "@repo/tokens";
+import { assignInlineVars } from "@vanilla-extract/dynamic";
+import { clsx } from "clsx";
+import React from "react";
 
 import {
   activeColorVariant,
@@ -11,18 +11,21 @@ import {
   enableColorVariant,
   hoverColorVariant,
   spanStyle,
-} from './style.css';
-import { useButton } from './useButton';
+} from "./style.css";
+import { useButton } from "./useButton";
 
-import { spinnerStyle } from '@/styles/recipe';
+import { spinnerStyle } from "@/styles/recipe";
+import { BaseStyle } from "@/styles/css";
+import { StyleSprinkles } from "@/styles/sprinkle";
+import { extractSprinkleProps } from "@/utils";
 
 export function Button(
-  props: ButtonProps & { ref?: React.Ref<HTMLButtonElement> },
+  props: ButtonProps & { ref?: React.Ref<HTMLButtonElement> }
 ) {
   const {
     size,
-    color = 'blue',
-    variant = 'solid',
+    color = "blue",
+    variant = "solid",
     children,
     ref,
     leftIcon,
@@ -30,9 +33,9 @@ export function Button(
     isLoading,
     style,
   } = props;
-  const { buttonProps } = useButton<'button'>({
+  const { buttonProps } = useButton<"button">({
     ...props,
-    elementType: 'button',
+    elementType: "button",
   });
 
   const keys = Object.keys(palette[color]);
@@ -48,7 +51,13 @@ export function Button(
     <button
       {...buttonProps}
       role="button"
-      className={clsx([buttonStyle({ size, variant })])}
+      className={clsx([
+        buttonStyle({ size, variant }),
+        BaseStyle,
+        StyleSprinkles(
+          extractSprinkleProps(props, Array.from(StyleSprinkles.properties))
+        ),
+      ])}
       ref={ref}
       style={{
         ...assignInlineVars({
@@ -57,7 +66,7 @@ export function Button(
           [activeColorVariant]: activeColor,
         }),
         ...style,
-        position: 'relative',
+        position: "relative",
       }}
     >
       {isLoading && <div className={spinnerStyle({ size })}></div>}
