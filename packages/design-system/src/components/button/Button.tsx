@@ -15,7 +15,6 @@ import {
 import { useButton } from "./useButton";
 
 import { spinnerStyle } from "@/styles/recipe";
-import { BaseStyle } from "@/styles/css";
 import { StyleSprinkles } from "@/styles/sprinkle";
 import { extractSprinkleProps } from "@/utils";
 
@@ -53,10 +52,10 @@ export function Button(
       role="button"
       className={clsx([
         buttonStyle({ size, variant }),
-        BaseStyle,
         StyleSprinkles(
           extractSprinkleProps(props, Array.from(StyleSprinkles.properties))
         ),
+        props.className,
       ])}
       ref={ref}
       style={{
