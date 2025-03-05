@@ -2,6 +2,10 @@ import { RefType } from "@/types";
 import { ButtonProps } from "./types";
 import { Button } from "./Button";
 import React from "react";
+import clsx from "clsx";
+import { buttonStyle } from "./style.css";
+import { StyleSprinkles } from "@/styles/sprinkle";
+import { extractSprinkleProps } from "@/utils";
 
 type OmittedProps =
   | "leftIcon"
@@ -36,6 +40,7 @@ const IconButton = (props: IconButtonProps & RefType<HTMLButtonElement>) => {
     "aria-label": ariaLabel,
     children,
     ref,
+    size = "md",
     ...rest
   } = props;
 
@@ -50,13 +55,18 @@ const IconButton = (props: IconButtonProps & RefType<HTMLButtonElement>) => {
         focusable: false,
       })
     : null;
+
   return (
     <Button
-      paddingX={0}
-      paddingY={0}
-      borderRadius={isRound ? "full" : undefined}
       ref={ref}
       aria-label={ariaLabel}
+      className={clsx([
+        buttonStyle({ size }),
+        StyleSprinkles({
+          ...extractSprinkleProps(rest, Array.from(StyleSprinkles.properties)),
+          borderRadius: isRound ? "full" : "md", // ✅ Sprinkles에서 올바르게 적용
+        }),
+      ])}
       {...rest}
     >
       {_children}
